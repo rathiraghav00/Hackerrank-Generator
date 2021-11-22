@@ -14,8 +14,10 @@ else
 	exit 1
 fi
 
+function timeout() { perl -e 'alarm shift; exec @ARGV' "$@"; }
+
 cmd="./generator $1"
-if timeout 30s $cmd;
+if timeout 300000s $cmd;
 then
 	printf "\nGenerator executed successfully.\n"
 else
@@ -36,7 +38,7 @@ fi
 touch testcases/input/input00.txt
 touch testcases/output/output00.txt
 
-for (( tno=0; tno<=$1; tno++ ))
+for (( tno=0; tno<$1; tno++ ))
 do
 	ifname="input"
 	ofname="output"
@@ -50,9 +52,10 @@ do
 	ofname="$ofname$tno"
 	ext=".txt"
 	ifname="$ifname$ext"
+
 	ofname="$ofname$ext"
 	cat $tno > $ifname
-	if timeout 30s ./solution<$ifname>$ofname;
+	if timeout 30000s ./solution<$ifname>$ofname;
 	then
 		printf ""
 	else

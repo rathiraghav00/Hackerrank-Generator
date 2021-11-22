@@ -6,9 +6,7 @@ using namespace std;
 void writeTest(int test)
 {
     startTest(test);
-    /*
-        Generator Code
-    */
+    cout << 1 << '\n';
 }
 
 

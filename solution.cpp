@@ -29,7 +29,9 @@ signed main()
 //    cin>>TESTS;
     while(TESTS--)
     {
-        // Code
+        int n;
+        cin >> n;
+        cout << n << '\n';
     }
     return 0;
 }
